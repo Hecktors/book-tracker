@@ -1,17 +1,48 @@
-import React from "react"
+import { Component } from "react"
 import PropTypes from "prop-types"
+import Shelf from "./Shelf"
 
-ShelfList.propTypes = {
-  books: PropTypes.array.isRequired,
-  updateBook: PropTypes.func.isRequired,
-}
+export default class ShelfList extends Component {
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    selectedBook: PropTypes.string,
+    updateBook: PropTypes.func.isRequired,
+    updateSelectedBook: PropTypes.func.isRequired,
+  }
 
-export default function ShelfList({ books, updateBook }) {
-  const shelfs = []
-  books.forEach((book) => {
-    book.shelf === "currentlyReading" && shelfs[0].push(book)
-    book.shelf === "wantToRead" && shelfs[1].push(book)
-    book.shelf === "read" && shelfs[2].push(book)
-  })
-  return <div></div>
+  render() {
+    const shelfs = [
+      {
+        name: "currentlyReading",
+        title: "Currently reading",
+        books: [],
+      },
+      {
+        name: "wantToRead",
+        title: "Want to read",
+        books: [],
+      },
+      {
+        name: "read",
+        title: "Read",
+        books: [],
+      },
+    ]
+    const { books, selectedBook, updateBook, updateSelectedBook } = this.props
+
+    books.forEach((book) => shelfs.forEach((shelf) => shelf.name === book.shelf && shelf.books.push(book)))
+    return (
+      <div>
+        {shelfs.map((shelf) => (
+          <Shelf
+            key={shelf.title}
+            shelf={shelf}
+            selectedBook={selectedBook}
+            updateBook={updateBook}
+            updateSelectedBook={updateSelectedBook}
+          />
+        ))}
+      </div>
+    )
+  }
 }

@@ -3,12 +3,22 @@ import PropTypes from "prop-types"
 
 ConfirmLayer.propTypes = {
   confirmInfo: PropTypes.object.isRequired,
-  handleCancel: PropTypes.func.isRequired,
-  handleConfirm: PropTypes.func.isRequired,
+  cancel: PropTypes.func.isRequired,
+  add: PropTypes.func.isRequired,
 }
 
-export default function ConfirmLayer({ confirmInfo, handleCancel, handleConfirm }) {
-  const { imgURL, bookInfo, text, btnText, btnColor = "green" } = confirmInfo
+export default function ConfirmLayer({ confirmInfo, cancel, add }) {
+  const { imgURL, bookInfo } = confirmInfo
+  const handleCancel = (e) => {
+    e.stopPropagation()
+    cancel()
+  }
+
+  const handleAdd = (e) => {
+    e.stopPropagation()
+    add()
+  }
+
   return (
     <div>
       <div className="col-left">
@@ -17,13 +27,13 @@ export default function ConfirmLayer({ confirmInfo, handleCancel, handleConfirm 
       </div>
 
       <div className="col-right">
-        <p>{text}</p>
+        <p>"Do you want to add this book?"}</p>
         <div className="button-container">
           <button className="btn-cancel" onClick={handleCancel}>
             Cancel
           </button>
-          <button style={{ background: btnColor }} className="btn-confirm" onClick={handleConfirm}>
-            {btnText}
+          <button className="btn-confirm" onClick={handleAdd}>
+            Add Book
           </button>
         </div>
       </div>

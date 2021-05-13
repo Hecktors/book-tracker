@@ -1,58 +1,77 @@
 import { Component } from "react"
 import PropTypes from "prop-types"
+import BookMenu from "./BookMenu"
+import ComfirmLayer from "./ConfirmLayer"
 
-export default class Book extends Component() {
+export default class Book extends Component {
   static propTypes = {
     book: PropTypes.object.isRequired,
+    selectedBook: PropTypes.string,
     updateBook: PropTypes.func.isRequired,
+    updateSelectedBook: PropTypes.func,
   }
 
   state = {
-    isBookMenuOpen: false,
     isConfirmLayerOpen: false,
   }
 
-  handleClick() {
-    book.hasOwnProperty("shelf") ? this.setState({ isBookMenuOpen: true }) : this.setState({ isConfirmLayerOpen: true })
+  handleClick = () => {
+    this.props.book.hasOwnProperty("shelf")
+      ? this.props.updateSelectedBook(this.props.book.id)
+      : this.setState({ isConfirmLayerOpen: true })
   }
 
-  closeConfirmLayer() {
-    this.state({ isConfirmLayerOpen: false })
+  cancel = (e) => {
+    this.setState({ isConfirmLayerOpen: false })
+    this.props.book.hasOwnProperty("shelf") && this.props.updateSelectedBook(null)
   }
 
-  addBook() {
-    updateBook(book)
-    this.state({ isConfirmLayerOpen: false })
+  add = () => {
+    this.props.updateBook(this.props.book, "wantToRead")
+    this.setState({ isConfirmLayerOpen: false })
   }
 
-  removeBook() {
-    updateBook(book, "")
-    this.state({ isBookMenuOpen: false })
+  update = (shelf) => {
+    this.props.updateSelectedBook(null)
+    this.props.updateBook(this.props.book, shelf)
   }
 
-  updateBook(shelf) {
-    updateBook(book, shelf)
-    this.state({ isBookMenuOpen: false })
+  askRemoveComfirm = () => {
+    this.setState({ isConfirmLayerOpen: true })
+  }
+
+  remove = () => {
+    this.props.updateBook(this.props.book, "")
+    this.setState({ isConfirmLayerOpen: false })
   }
 
   render() {
-    const { book, updateBook } = this.props
-    const isInShelf = book.hasOwnProperty("shelf")
-    const text = isInShelf ? "Do you want to remove this book?" : "Do you want to add this book?"
-    const btnText = isInShelf ? "Remove" : "Add"
-    const btnColor = isInShelf ? "red" : "green"
+    const { book } = this.props
+    const isBookMenuOpen = this.props.selectedBook === book.id && !this.state.isConfirmLayerOpen
     const bookInfo = (
       <>
-        <p className="authors">{book.authors.map((author, i) => (author + i < authors.length + 1 ? "<br/>" : ""))}</p>
+        <p className="authors">
+          {book.authors.map((author, i) => {
+            return (
+              <span key={author}>
+                {author} {i < book.authors.length - 1 && <br />}
+              </span>
+            )
+          })}
+        </p>
         <p className="title">{book.title}</p>
       </>
     )
 
-    const confirmInfo = { imgUrl: book.thumbnail, bookInfo, text, btnText, btnColor }
-
+    const confirmInfo = { imgURL: book.imageLinks.thumbnail, bookInfo }
     return (
-      <div onClick={this.handleClick}>
-        <img src={book.smallThumbnail} alt="Book cover" />
+      <div onClick={() => this.handleClick(book)}>
+        {this.state.isConfirmLayerOpen && (
+          <ComfirmLayer confirmInfo={confirmInfo} cancel={this.cancel} add={this.add} />
+        )}
+        {isBookMenuOpen && <BookMenu shelf={book.shelf} update={this.update} cancel={this.cancel} />}
+
+        <img src={book.imageLinks.smallThumbnail} alt="Book cover" />
         {bookInfo}
       </div>
     )
