@@ -31,21 +31,24 @@ export default class Book extends Component() {
   }
 
   updateBook(shelf) {
-    updateBook(book, shelp)
+    updateBook(book, shelf)
     this.state({ isBookMenuOpen: false })
   }
 
   render() {
     const { book, updateBook } = this.props
-    const text = "Do you want to add this book?"
-    const bntText = "Add"
+    const isInShelf = book.hasOwnProperty("shelf")
+    const text = isInShelf ? "Do you want to remove this book?" : "Do you want to add this book?"
+    const btnText = isInShelf ? "Remove" : "Add"
+    const btnColor = isInShelf ? "red" : "green"
     const bookInfo = (
       <>
-        {" "}
         <p className="authors">{book.authors.map((author, i) => (author + i < authors.length + 1 ? "<br/>" : ""))}</p>
         <p className="title">{book.title}</p>
       </>
     )
+
+    const confirmInfo = { imgUrl: book.thumbnail, bookInfo, text, btnText, btnColor }
 
     return (
       <div onClick={this.handleClick}>

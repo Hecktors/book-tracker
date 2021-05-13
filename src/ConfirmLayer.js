@@ -2,24 +2,13 @@ import React from "react"
 import PropTypes from "prop-types"
 
 ConfirmLayer.propTypes = {
-  imgUrl: PropTypes.bool.isRequired,
-  authors: PropTypes.bool.isRequired,
-  bookInfo: PropTypes.node.isRequired,
-  btnText: PropTypes.string.isRequired,
-  btnColor: PropTypes.string,
+  confirmInfo: PropTypes.object.isRequired,
   handleCancel: PropTypes.func.isRequired,
   handleConfirm: PropTypes.func.isRequired,
 }
 
-export default function ConfirmLayer({
-  imgURL,
-  bookInfo,
-  text,
-  btnText,
-  btnColor = "green",
-  handleCancel,
-  handleConfirm,
-}) {
+export default function ConfirmLayer({ confirmInfo, handleCancel, handleConfirm }) {
+  const { imgURL, bookInfo, text, btnText, btnColor = "green" } = confirmInfo
   return (
     <div>
       <div className="col-left">
