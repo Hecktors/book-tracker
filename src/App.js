@@ -14,22 +14,22 @@ class App extends Component {
 
   addBook(book) {
     update(book, "wantToRead")
-    const updatedBooks = [...this.state.books, { ...book, self: "wantToRead" }]
+    const updatedBooks = [...this.state.books, { ...book, shelf: "wantToRead" }]
       .then(this.setState({ books: updatedBooks }))
       .catch((err) => console.error(err))
   }
 
-  updateBook(book, self) {
-    update(book, self)
+  updateBook(book, shelf) {
+    update(book, shelf)
     const updatedBooks = this.state.books.map((book) => {
-      return book.id === id ? { ...book, self } : book
+      return book.id === id ? { ...book, shelf } : book
     })
     this.setState({ books: updatedBooks })
   }
 
   removeBook(book) {
     update(book, "")
-    const updatedBooks = [...this.state.books, { ...book, self: "" }]
+    const updatedBooks = [...this.state.books, { ...book, shelf: "" }]
       .then(this.setState({ books: updatedBooks }))
       .catch((err) => console.error(err))
   }

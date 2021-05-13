@@ -1,11 +1,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-Self.propTypes = {
+Shelf.propTypes = {
   books: PropTypes.array.isRequired,
   updateBook: PropTypes.func.isRequired,
 }
 
-export default function Self({ books, updateBook }) {
+export default function Shelf({ books, updateBook }) {
   return <div></div>
 }
