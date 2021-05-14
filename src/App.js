@@ -1,4 +1,5 @@
 import { Component } from "react"
+import { Route } from "react-router-dom"
 import { getAll, update } from "./BookAPI"
 import Search from "./Search"
 import ShelfList from "./ShelfList"
@@ -33,13 +34,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ShelfList
-          books={this.state.books}
-          selectedBook={this.state.selectedBook}
-          updateBook={this.updateBook}
-          updateSelectedBook={this.updateSelectedBook}
-        />
-        <Search books={this.state.books} updateBook={this.updateBook} />
+        <Route exact path="/">
+          <ShelfList
+            books={this.state.books}
+            selectedBook={this.state.selectedBook}
+            updateBook={this.updateBook}
+            updateSelectedBook={this.updateSelectedBook}
+          />
+        </Route>
+        <Route path="/search">
+          <Search books={this.state.books} updateBook={this.updateBook} />
+        </Route>
       </div>
     )
   }

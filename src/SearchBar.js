@@ -1,5 +1,6 @@
 import { Component } from "react"
 import PropTypes from "prop-types"
+import { Link } from "react-router-dom"
 
 export default class SearchBar extends Component {
   static propTypes = {
@@ -23,6 +24,7 @@ export default class SearchBar extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        <Link to="/">home</Link>
         <input type="text" name="query" value={this.state.query} onChange={this.handleChange} />
         <button>Search</button>
       </form>
