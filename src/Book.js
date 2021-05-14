@@ -1,5 +1,6 @@
 import { Component } from "react"
 import PropTypes from "prop-types"
+import styled from "styled-components"
 import BookMenu from "./BookMenu"
 import ComfirmLayer from "./ConfirmLayer"
 
@@ -50,7 +51,7 @@ export default class Book extends Component {
     const isBookMenuOpen = this.props.selectedBook === book.id && !this.state.isConfirmLayerOpen
     const bookInfo = (
       <>
-        <p className="authors">
+        <p className="book-authors">
           {book.authors.map((author, i) => {
             return (
               <span key={author}>
@@ -59,21 +60,53 @@ export default class Book extends Component {
             )
           })}
         </p>
-        <p className="title">{book.title}</p>
+        <p className="book-title">{book.title}</p>
       </>
     )
 
     const confirmInfo = { imgURL: book.imageLinks.thumbnail, bookInfo }
     return (
-      <div onClick={() => this.handleClick(book)}>
+      <BookStyled className="btn" onClick={() => this.handleClick(book)}>
         {this.state.isConfirmLayerOpen && (
           <ComfirmLayer confirmInfo={confirmInfo} cancel={this.cancel} add={this.add} />
         )}
         {isBookMenuOpen && <BookMenu shelf={book.shelf} update={this.update} cancel={this.cancel} />}
-
-        <img src={book.imageLinks.smallThumbnail} alt="Book cover" />
+        <div className="img-container">
+          <img src={book.imageLinks.smallThumbnail} alt="Book cover" />
+        </div>
         {bookInfo}
-      </div>
+      </BookStyled>
     )
   }
 }
+
+const BookStyled = styled.div`
+  width: 180px;
+  justify-self: center;
+  padding: 20px 10px 10px;
+  text-align: center;
+  transition: 0.1s;
+
+  &:hover {
+    transform: scale(1.05);
+    background-color: #eee;
+  }
+
+  .img-container {
+    margin: auto;
+    width: 128px;
+    height: 192px;
+    img {
+      max-width: 100%;
+      height: 100%;
+    }
+  }
+
+  .book-authors {
+    color: #444;
+  }
+
+  .book-title {
+    font-weight: 500;
+  }
+`

@@ -3,12 +3,10 @@ import { Link } from "react-router-dom"
 
 export default function AddBook() {
   return (
-    <a href="localhost:3000">
+    <Link to="/search">
       <div>
-        <Link to="/search">
-          <div className="addIcon">Search</div>
-        </Link>
+        <div className="addIcon">Search</div>
       </div>
-    </a>
+    </Link>
   )
 }

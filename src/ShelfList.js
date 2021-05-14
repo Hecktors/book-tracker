@@ -1,5 +1,6 @@
 import { Component } from "react"
 import PropTypes from "prop-types"
+import styled from "styled-components"
 import Shelf from "./Shelf"
 
 export default class ShelfList extends Component {
@@ -32,7 +33,7 @@ export default class ShelfList extends Component {
 
     books.forEach((book) => shelfs.forEach((shelf) => shelf.name === book.shelf && shelf.books.push(book)))
     return (
-      <div>
+      <ShelfListStyled>
         {shelfs.map((shelf) => (
           <Shelf
             key={shelf.title}
@@ -42,7 +43,13 @@ export default class ShelfList extends Component {
             updateSelectedBook={updateSelectedBook}
           />
         ))}
-      </div>
+      </ShelfListStyled>
     )
   }
 }
+
+const ShelfListStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`

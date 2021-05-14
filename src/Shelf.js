@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import styled from "styled-components"
 import Book from "./Book"
 import AddBook from "./AddBook"
 
@@ -12,18 +13,50 @@ Shelf.propTypes = {
 
 export default function Shelf({ shelf, updateBook, selectedBook, updateSelectedBook }) {
   return (
-    <div>
+    <ShelfStyled>
       <h2 className="shelf-title">{shelf.title}</h2>
-      {shelf.books.map((book) => (
-        <Book
-          key={book.id}
-          book={book}
-          selectedBook={selectedBook}
-          updateBook={updateBook}
-          updateSelectedBook={updateSelectedBook}
-        />
-      ))}
-      {shelf.title === "Want to read" && <AddBook />}
-    </div>
+      <div className="book-container">
+        {shelf.books.map((book) => (
+          <Book
+            key={book.id}
+            book={book}
+            selectedBook={selectedBook}
+            updateBook={updateBook}
+            updateSelectedBook={updateSelectedBook}
+          />
+        ))}
+        {shelf.title === "Want to read" && <AddBook />}
+      </div>
+    </ShelfStyled>
   )
 }
+
+const ShelfStyled = styled.div`
+  padding: 30px 0;
+  width: 100%;
+
+  @media (min-width: 450px) {
+  }
+
+  h2 {
+    padding: 30px 20px;
+  }
+
+  .book-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    @media (min-width: 540px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    @media (min-width: 720px) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    @media (min-width: 900px) {
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+    @media (min-width: 1080px) {
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+  }
+`

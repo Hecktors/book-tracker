@@ -1,5 +1,6 @@
 import { Component } from "react"
 import { Route } from "react-router-dom"
+import styled from "styled-components"
 import { getAll, update } from "./BookAPI"
 import Search from "./Search"
 import ShelfList from "./ShelfList"
@@ -33,7 +34,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <AppStyled className="App">
         <Route exact path="/">
           <ShelfList
             books={this.state.books}
@@ -45,9 +46,14 @@ class App extends Component {
         <Route path="/search">
           <Search books={this.state.books} updateBook={this.updateBook} />
         </Route>
-      </div>
+      </AppStyled>
     )
   }
 }
 
 export default App
+
+const AppStyled = styled.div`
+  max-width: 1080px;
+  margin: auto;
+`
