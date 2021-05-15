@@ -39,7 +39,11 @@ const ShelfStyled = styled.div`
   }
 
   h2 {
-    padding: 30px 20px;
+    padding: 0 20px;
+
+    @media (min-width: 456px) {
+      padding: 30px 20px;
+    }
   }
 
   .book-container {
