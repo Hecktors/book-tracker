@@ -104,9 +104,11 @@ const BookStyled = styled.div`
 
   .book-authors {
     color: #444;
+    margin: 5px 0 0 0;
   }
 
   .book-title {
     font-weight: 500;
+    margin-top: 10px;
   }
 `
