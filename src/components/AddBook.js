@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import AddIcon from "./icons/add_circle.svg"
+import AddIcon from "../icons/add_circle.svg"
 
 export default function AddBook() {
   return (

@@ -1,7 +1,7 @@
 import { Component } from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components/macro"
-import { search } from "./BookAPI"
+import { search } from "../BookAPI"
 import Shelf from "./Shelf"
 import SearchBar from "./SearchBar"
 

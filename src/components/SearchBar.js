@@ -2,8 +2,8 @@ import { Component } from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components/macro"
 import { Link } from "react-router-dom"
-import ArrowBack from "./icons/arrow_back.svg"
-import SearchIcon from "./icons/search_icon.svg"
+import ArrowBack from "../icons/arrow_back.svg"
+import SearchIcon from "../icons/search_icon.svg"
 
 export default class SearchBar extends Component {
   static propTypes = {

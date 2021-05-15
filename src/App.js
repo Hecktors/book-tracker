@@ -2,9 +2,9 @@ import { Component } from "react"
 import { Route } from "react-router-dom"
 import styled from "styled-components/macro"
 import { getAll, update } from "./BookAPI"
-import Header from "./Header"
-import Search from "./Search"
-import ShelfList from "./ShelfList"
+import Header from "./components/Header"
+import Search from "./components/Search"
+import ShelfList from "./components/ShelfList"
 
 class App extends Component {
   state = {

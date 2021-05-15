@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components/macro"
-import BookIcon from "./icons/book.svg"
+import BookIcon from "../icons/book.svg"
 
 export default function Header() {
   return (
