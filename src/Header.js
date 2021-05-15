@@ -15,6 +15,7 @@ const HeaderStyled = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
   color: #007600;
 
   img {

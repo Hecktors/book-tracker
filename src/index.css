@@ -18,6 +18,20 @@ code {
 
 h1 {
   text-align: center;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.3rem;
+  border-bottom: 1px solid #ddd;
+  margin: 0;
+  padding: 20px;
+}
+
+@media (min-width: 540px) {
+  h2 {
+    margin: 40px 0;
+  }
 }
 
 a {
@@ -30,6 +44,7 @@ button,
 }
 
 button {
+  background-color: transparent;
   border: none;
   outline: none;
 }

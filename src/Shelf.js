@@ -35,17 +35,6 @@ const ShelfStyled = styled.div`
   padding: 30px 0;
   width: 100%;
 
-  @media (min-width: 450px) {
-  }
-
-  h2 {
-    padding: 0 20px;
-
-    @media (min-width: 456px) {
-      padding: 30px 20px;
-    }
-  }
-
   .book-container {
     display: grid;
     grid-template-columns: 1fr 1fr;

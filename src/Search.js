@@ -1,5 +1,6 @@
 import { Component } from "react"
 import PropTypes from "prop-types"
+import styled from "styled-components/macro"
 import { search } from "./BookAPI"
 import Shelf from "./Shelf"
 import SearchBar from "./SearchBar"
@@ -26,10 +27,14 @@ export default class Search extends Component {
   render() {
     const shelf = { title: `Search results for '${this.state.searchTerm}'`, books: this.state.foundBooks }
     return (
-      <div>
+      <SearchStyled>
         <SearchBar searchBooks={this.searchBooks} />
         {this.state.searchTerm && <Shelf shelf={shelf} updateBook={this.props.updateBook} />}
-      </div>
+      </SearchStyled>
     )
   }
 }
+
+const SearchStyled = styled.div`
+  padding-top: 56px;
+`

@@ -34,7 +34,6 @@ class App extends Component {
   }
 
   handleClick = () => {
-    console.log("click")
     this.setState({ selectedBook: null })
   }
 
@@ -62,5 +61,5 @@ export default App
 
 const AppStyled = styled.div`
   max-width: 1080px;
-  margin: auto;
+  margin: 0 auto;
 `
