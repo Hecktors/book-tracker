@@ -1,6 +1,6 @@
 import { Component } from "react"
 import PropTypes from "prop-types"
-import styled from "styled-components"
+import styled from "styled-components/macro"
 import BookMenu from "./BookMenu"
 import ComfirmLayer from "./ConfirmLayer"
 
@@ -88,7 +88,7 @@ const BookStyled = styled.div`
   transition: 0.1s;
 
   &:hover {
-    transform: scale(1.05);
+    /* transform: scale(1.05); */
     background-color: #eee;
   }
 

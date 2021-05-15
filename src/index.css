@@ -24,6 +24,11 @@ button,
   cursor: pointer;
 }
 
+button {
+  border: none;
+  outline: none;
+}
+
 button:hover {
   opacity: 0.8;
 }
