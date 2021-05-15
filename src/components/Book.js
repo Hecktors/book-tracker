@@ -55,7 +55,7 @@ export default class Book extends Component {
     const bookInfo = (
       <>
         <p className="book-authors">
-          {book.authors.map((author, i) => {
+          {book.authors?.map((author, i) => {
             return (
               <span key={author}>
                 {author} {i < book.authors.length - 1 && <br />}
@@ -67,7 +67,7 @@ export default class Book extends Component {
       </>
     )
 
-    const confirmInfo = { imgURL: book.imageLinks.thumbnail, bookInfo }
+    const confirmInfo = { imgURL: book?.imageLinks?.thumbnail, bookInfo }
     return (
       <BookStyled className="btn" onClick={this.handleClick}>
         {this.state.isConfirmLayerOpen && (

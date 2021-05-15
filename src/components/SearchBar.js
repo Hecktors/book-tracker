@@ -1,51 +1,28 @@
-import { Component } from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components/macro"
 import { Link } from "react-router-dom"
 import ArrowBack from "../icons/arrow_back.svg"
-import SearchIcon from "../icons/search_icon.svg"
 
-export default class SearchBar extends Component {
-  static propTypes = {
-    searchBooks: PropTypes.func.isRequired,
-  }
+SearchBar.propTypes = {
+  searchBooks: PropTypes.func.isRequired,
+}
 
-  state = {
-    query: "",
-  }
-
-  handleChange = (e) => {
-    this.setState({ query: e.target.value })
-  }
-
-  handleSubmit = (e) => {
+export default function SearchBar({ searchBooks }) {
+  function handleChange(e) {
     e.preventDefault()
-    this.props.searchBooks(this.state.query)
-    this.setState({ query: "" })
+    searchBooks(e.target.value)
   }
 
-  render() {
-    return (
-      <SearchBarStyled onSubmit={this.handleSubmit}>
-        <div className="link-container">
-          <Link to="/">
-            <img src={ArrowBack} alt="Back to home" />
-          </Link>
-        </div>
-        <input
-          type="text"
-          name="query"
-          autoFocus
-          placeholder="Search"
-          value={this.state.query}
-          onChange={this.handleChange}
-        />
-        <button>
-          <img src={SearchIcon} alt="Search Icon" />
-        </button>
-      </SearchBarStyled>
-    )
-  }
+  return (
+    <SearchBarStyled>
+      <div className="link-container">
+        <Link to="/">
+          <img src={ArrowBack} alt="Back to home" />
+        </Link>
+      </div>
+      <input type="text" name="query" autoFocus placeholder="Search" onChange={handleChange} />
+    </SearchBarStyled>
+  )
 }
 
 const SearchBarStyled = styled.form`

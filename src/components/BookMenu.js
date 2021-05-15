@@ -26,7 +26,7 @@ export default function BookMenu({ shelf, update, cancel }) {
         Read
       </button>
       <button className="btnMenu" onClick={handleCancel}>
-        Cancel
+        None
       </button>
     </BookMenuStyled>
   )

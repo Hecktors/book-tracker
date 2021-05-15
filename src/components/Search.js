@@ -16,14 +16,20 @@ export default class Search extends Component {
   }
 
   searchBooks = (query) => {
+    this.setState({ searchTerm: query })
     if (!query) {
+      this.setState({ foundBooks: [] })
       return
     }
     const bookIDs = this.props.books.map((book) => book.id)
     search(query)
-      .then((books) =>
+      .then((books) => {
+        if (books.error) {
+          this.setState({ foundBooks: [] })
+          return
+        }
         this.setState({ foundBooks: books.filter((book) => !bookIDs.includes(book.id)), searchTerm: query })
-      )
+      })
       .catch((err) => console.error(err))
   }
 
