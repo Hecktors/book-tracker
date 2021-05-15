@@ -11,21 +11,24 @@ export default class Search extends Component {
   }
   state = {
     foundBooks: [],
+    searchTerm: "",
   }
 
   searchBooks = (query) => {
     const bookIDs = this.props.books.map((book) => book.id)
     search(query)
-      .then((books) => this.setState({ foundBooks: books.filter((book) => !bookIDs.includes(book.id)) }))
+      .then((books) =>
+        this.setState({ foundBooks: books.filter((book) => !bookIDs.includes(book.id)), searchTerm: query })
+      )
       .catch((err) => console.error(err))
   }
 
   render() {
-    const shelf = { title: "Search result", books: this.state.foundBooks }
+    const shelf = { title: `Search results for '${this.state.searchTerm}'`, books: this.state.foundBooks }
     return (
       <div>
         <SearchBar searchBooks={this.searchBooks} />
-        <Shelf shelf={shelf} updateBook={this.props.updateBook} />
+        {this.state.searchTerm && <Shelf shelf={shelf} updateBook={this.props.updateBook} />}
       </div>
     )
   }

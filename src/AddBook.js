@@ -1,13 +1,14 @@
 import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import AddIcon from "./icons/add_circle.svg"
 
 export default function AddBook() {
   return (
     <AddBookStyled className="AddBook">
       <Link to="/search">
         <div className="icon-container">
-          <span className="icon">+</span>
+          <img src={AddIcon} alt="Add book" />
         </div>
       </Link>
     </AddBookStyled>
@@ -26,29 +27,12 @@ const AddBookStyled = styled.div`
     transform: scale(1.05);
   }
 
-  a {
-    text-decoration: none;
-  }
-
   .icon-container {
     width: 128px;
     height: 192px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: red;
     background-color: #eee;
-  }
-
-  .icon {
-    width: 50px;
-    height: 50px;
-    border: 2px solid darkgreen;
-    border-radius: 100%;
-    line-height: 40px;
-    text-align: center;
-    font-size: 58px;
-    background-color: green;
-    color: #fff;
   }
 `

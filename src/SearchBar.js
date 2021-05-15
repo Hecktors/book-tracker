@@ -1,6 +1,8 @@
 import { Component } from "react"
 import PropTypes from "prop-types"
+import styled from "styled-components"
 import { Link } from "react-router-dom"
+import ArrowBack from "./icons/arrow_back.svg"
 
 export default class SearchBar extends Component {
   static propTypes = {
@@ -23,11 +25,48 @@ export default class SearchBar extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <Link to="/">home</Link>
-        <input type="text" name="query" value={this.state.query} onChange={this.handleChange} />
-        <button>Search</button>
-      </form>
+      <SearchBarStyled onSubmit={this.handleSubmit}>
+        <div className="link-container">
+          <Link to="/">
+            <img src={ArrowBack} alt="Back to home" />
+          </Link>
+        </div>
+        <input
+          type="text"
+          name="query"
+          autoFocus
+          placeholder="Search"
+          value={this.state.query}
+          onChange={this.handleChange}
+        />
+      </SearchBarStyled>
     )
   }
 }
+
+const SearchBarStyled = styled.form`
+  width: 100%;
+  height: 56px;
+  display: flex;
+  border-bottom: 1px solid #bbb;
+
+  .link-container {
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  input {
+    padding-left: 20px;
+    flex-grow: 1;
+    font-size: 1.2rem;
+  }
+
+  input,
+  input:focus,
+  input:active {
+    border: none;
+    outline: none;
+  }
+`
