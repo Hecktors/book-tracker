@@ -36,6 +36,7 @@ class App extends Component {
     return (
       <AppStyled className="App">
         <Route exact path="/">
+          <h1>Book Tracking</h1>
           <ShelfList
             books={this.state.books}
             selectedBook={this.state.selectedBook}
