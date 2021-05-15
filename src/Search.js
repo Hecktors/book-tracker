@@ -16,6 +16,9 @@ export default class Search extends Component {
   }
 
   searchBooks = (query) => {
+    if (!query) {
+      return
+    }
     const bookIDs = this.props.books.map((book) => book.id)
     search(query)
       .then((books) =>
