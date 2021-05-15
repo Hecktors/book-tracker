@@ -1,6 +1,6 @@
 import { Component } from "react"
 import { Route } from "react-router-dom"
-import styled from "styled-components"
+import styled from "styled-components/macro"
 import { getAll, update } from "./BookAPI"
 import Search from "./Search"
 import ShelfList from "./ShelfList"
