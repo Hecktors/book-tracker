@@ -2,6 +2,7 @@ import { Component } from "react"
 import { Route } from "react-router-dom"
 import styled from "styled-components/macro"
 import { getAll, update } from "./BookAPI"
+import Header from "./Header"
 import Search from "./Search"
 import ShelfList from "./ShelfList"
 
@@ -41,7 +42,7 @@ class App extends Component {
     return (
       <AppStyled className="App" onClick={this.handleClick}>
         <Route exact path="/">
-          <h1>Book Tracking</h1>
+          <Header />
           <ShelfList
             books={this.state.books}
             selectedBook={this.state.selectedBook}
