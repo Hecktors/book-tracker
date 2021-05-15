@@ -32,9 +32,14 @@ class App extends Component {
       .catch((err) => console.error(err))
   }
 
+  handleClick = () => {
+    console.log("click")
+    this.setState({ selectedBook: null })
+  }
+
   render() {
     return (
-      <AppStyled className="App">
+      <AppStyled className="App" onClick={this.handleClick}>
         <Route exact path="/">
           <h1>Book Tracking</h1>
           <ShelfList

@@ -16,8 +16,11 @@ export default class Book extends Component {
     isConfirmLayerOpen: false,
   }
 
-  handleClick = () => {
-    this.props.book.hasOwnProperty("shelf")
+  handleClick = (e) => {
+    e.stopPropagation()
+    this.props.selectedBook
+      ? this.props.updateSelectedBook(null)
+      : this.props.book.hasOwnProperty("shelf")
       ? this.props.updateSelectedBook(this.props.book.id)
       : this.setState({ isConfirmLayerOpen: true })
   }
@@ -66,7 +69,7 @@ export default class Book extends Component {
 
     const confirmInfo = { imgURL: book.imageLinks.thumbnail, bookInfo }
     return (
-      <BookStyled className="btn" onClick={() => this.handleClick(book)}>
+      <BookStyled className="btn" onClick={this.handleClick}>
         {this.state.isConfirmLayerOpen && (
           <ComfirmLayer confirmInfo={confirmInfo} cancel={this.cancel} add={this.add} />
         )}
