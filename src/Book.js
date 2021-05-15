@@ -81,6 +81,7 @@ export default class Book extends Component {
 }
 
 const BookStyled = styled.div`
+  position: relative;
   width: 180px;
   justify-self: center;
   padding: 20px 10px 10px;
@@ -88,7 +89,6 @@ const BookStyled = styled.div`
   transition: 0.1s;
 
   &:hover {
-    /* transform: scale(1.05); */
     background-color: #eee;
   }
 
