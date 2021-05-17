@@ -50,7 +50,12 @@ class App extends Component {
           />
         </Route>
         <Route path="/search">
-          <Search books={this.state.books} updateBook={this.updateBook} />
+          <Search
+            books={this.state.books}
+            selectedBook={this.state.selectedBook}
+            updateBook={this.updateBook}
+            updateSelectedBook={this.updateSelectedBook}
+          />
         </Route>
       </AppStyled>
     )

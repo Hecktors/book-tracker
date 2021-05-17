@@ -7,8 +7,10 @@ import SearchBar from "./SearchBar"
 
 export default class Search extends Component {
   static propTypes = {
-    updateBook: PropTypes.func.isRequired,
     books: PropTypes.array.isRequired,
+    selectedBook: PropTypes.string,
+    updateBook: PropTypes.func.isRequired,
+    updateSelectedBook: PropTypes.func,
   }
   state = {
     foundBooks: [],
@@ -38,7 +40,14 @@ export default class Search extends Component {
     return (
       <SearchStyled>
         <SearchBar searchBooks={this.searchBooks} />
-        {this.state.searchTerm && <Shelf shelf={shelf} updateBook={this.props.updateBook} />}
+        {this.state.searchTerm && (
+          <Shelf
+            shelf={shelf}
+            selectedBook={this.props.selectedBook}
+            updateBook={this.props.updateBook}
+            updateSelectedBook={this.props.updateSelectedBook}
+          />
+        )}
       </SearchStyled>
     )
   }

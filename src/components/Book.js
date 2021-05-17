@@ -2,7 +2,6 @@ import { Component } from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components/macro"
 import BookMenu from "./BookMenu"
-import ComfirmLayer from "./ConfirmLayer"
 import DefaultImg from "../icons/defaultImage.svg"
 
 export default class Book extends Component {
@@ -13,27 +12,17 @@ export default class Book extends Component {
     updateSelectedBook: PropTypes.func,
   }
 
-  state = {
-    isConfirmLayerOpen: false,
-  }
-
   handleClick = (e) => {
     e.stopPropagation()
-    this.props.selectedBook
-      ? this.props.updateSelectedBook(null)
-      : this.props.book.hasOwnProperty("shelf")
-      ? this.props.updateSelectedBook(this.props.book.id)
-      : this.setState({ isConfirmLayerOpen: true })
+    this.props.selectedBook ? this.props.updateSelectedBook(null) : this.props.updateSelectedBook(this.props.book.id)
   }
 
   cancel = (e) => {
-    this.setState({ isConfirmLayerOpen: false })
-    this.props.book.hasOwnProperty("shelf") && this.props.updateSelectedBook(null)
+    this.props.updateSelectedBook(null)
   }
 
   add = () => {
     this.props.updateBook(this.props.book, "wantToRead")
-    this.setState({ isConfirmLayerOpen: false })
   }
 
   update = (shelf) => {
@@ -41,20 +30,22 @@ export default class Book extends Component {
     this.props.updateBook(this.props.book, shelf)
   }
 
-  askRemoveComfirm = () => {
-    this.setState({ isConfirmLayerOpen: true })
-  }
-
   remove = () => {
     this.props.updateBook(this.props.book, "")
-    this.setState({ isConfirmLayerOpen: false })
   }
 
   render() {
     const { book } = this.props
-    const isBookMenuOpen = this.props.selectedBook === book.id && !this.state.isConfirmLayerOpen
-    const bookInfo = (
-      <>
+    const isBookMenuOpen = this.props.selectedBook === book.id
+
+    const imgURL = book.imageLinks ? book.imageLinks.thumbnail : DefaultImg
+
+    return (
+      <BookStyled className="btn" onClick={this.handleClick}>
+        {isBookMenuOpen && <BookMenu shelf={book.shelf} update={this.update} cancel={this.cancel} />}
+        <div className="img-container">
+          <img src={imgURL} alt="Book cover" />
+        </div>
         <p className="book-authors">
           {book.authors &&
             book.authors.map((author, i) => {
@@ -66,22 +57,6 @@ export default class Book extends Component {
             })}
         </p>
         <p className="book-title">{book.title}</p>
-      </>
-    )
-
-    const imgURL = book.imageLinks ? book.imageLinks.thumbnail : DefaultImg
-
-    const confirmInfo = { imgURL, bookInfo }
-    return (
-      <BookStyled className="btn" onClick={this.handleClick}>
-        {this.state.isConfirmLayerOpen && (
-          <ComfirmLayer confirmInfo={confirmInfo} cancel={this.cancel} add={this.add} />
-        )}
-        {isBookMenuOpen && <BookMenu shelf={book.shelf} update={this.update} cancel={this.cancel} />}
-        <div className="img-container">
-          <img src={imgURL} alt="Book cover" />
-        </div>
-        {bookInfo}
       </BookStyled>
     )
   }

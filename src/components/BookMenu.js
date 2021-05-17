@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import styled from "styled-components/macro"
 
 BookMenu.propTypes = {
-  shelf: PropTypes.string.isRequired,
+  shelf: PropTypes.string,
   update: PropTypes.func.isRequired,
   cancel: PropTypes.func.isRequired,
 }
