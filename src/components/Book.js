@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import styled from "styled-components/macro"
 import BookMenu from "./BookMenu"
 import ComfirmLayer from "./ConfirmLayer"
+import DefaultImg from "../icons/defaultImage.svg"
 
 export default class Book extends Component {
   static propTypes = {
@@ -55,19 +56,22 @@ export default class Book extends Component {
     const bookInfo = (
       <>
         <p className="book-authors">
-          {book.authors?.map((author, i) => {
-            return (
-              <span key={author}>
-                {author} {i < book.authors.length - 1 && <br />}
-              </span>
-            )
-          })}
+          {book.authors &&
+            book.authors.map((author, i) => {
+              return (
+                <span key={author}>
+                  {author} {i < book.authors.length - 1 && <br />}
+                </span>
+              )
+            })}
         </p>
         <p className="book-title">{book.title}</p>
       </>
     )
 
-    const confirmInfo = { imgURL: book?.imageLinks?.thumbnail, bookInfo }
+    const imgURL = book.imageLinks ? book.imageLinks.thumbnail : DefaultImg
+
+    const confirmInfo = { imgURL, bookInfo }
     return (
       <BookStyled className="btn" onClick={this.handleClick}>
         {this.state.isConfirmLayerOpen && (
@@ -75,7 +79,7 @@ export default class Book extends Component {
         )}
         {isBookMenuOpen && <BookMenu shelf={book.shelf} update={this.update} cancel={this.cancel} />}
         <div className="img-container">
-          <img src={book.imageLinks.smallThumbnail} alt="Book cover" />
+          <img src={imgURL} alt="Book cover" />
         </div>
         {bookInfo}
       </BookStyled>
@@ -99,6 +103,7 @@ const BookStyled = styled.div`
     margin: auto;
     width: 128px;
     height: 192px;
+    background-color: #999;
     img {
       max-width: 100%;
       height: 100%;
