@@ -4,14 +4,9 @@ import styled from "styled-components/macro"
 BookMenu.propTypes = {
   shelf: PropTypes.string,
   update: PropTypes.func.isRequired,
-  cancel: PropTypes.func.isRequired,
 }
 
-export default function BookMenu({ shelf, update, cancel }) {
-  function handleCancel(e) {
-    e.stopPropagation()
-    cancel()
-  }
+export default function BookMenu({ shelf, update }) {
   return (
     <BookMenuStyled>
       <p>Move to...</p>
@@ -24,9 +19,11 @@ export default function BookMenu({ shelf, update, cancel }) {
       <button className="btnMenu border-bottom" disabled={shelf === "read"} onClick={() => update("read")}>
         Read
       </button>
-      <button className="btnMenu" onClick={handleCancel}>
-        None
-      </button>
+      {shelf && (
+        <button className="btnMenu" onClick={() => update("None")}>
+          None
+        </button>
+      )}
     </BookMenuStyled>
   )
 }

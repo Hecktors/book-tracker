@@ -17,21 +17,9 @@ export default class Book extends Component {
     this.props.selectedBook ? this.props.updateSelectedBook(null) : this.props.updateSelectedBook(this.props.book.id)
   }
 
-  cancel = (e) => {
-    this.props.updateSelectedBook(null)
-  }
-
-  add = () => {
-    this.props.updateBook(this.props.book, "wantToRead")
-  }
-
   update = (shelf) => {
     this.props.updateSelectedBook(null)
     this.props.updateBook(this.props.book, shelf)
-  }
-
-  remove = () => {
-    this.props.updateBook(this.props.book, "")
   }
 
   render() {
@@ -42,7 +30,7 @@ export default class Book extends Component {
 
     return (
       <BookStyled className="btn" onClick={this.handleClick}>
-        {isBookMenuOpen && <BookMenu shelf={book.shelf} update={this.update} cancel={this.cancel} />}
+        {isBookMenuOpen && <BookMenu shelf={book.shelf} update={this.update} />}
         <div className="img-container">
           <img src={imgURL} alt="Book cover" />
         </div>
