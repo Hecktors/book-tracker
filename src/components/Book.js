@@ -60,6 +60,7 @@ const BookStyled = styled.div`
 
   &:hover {
     background-color: #eee;
+    transform: scale(1.05);
   }
 
   .img-container {

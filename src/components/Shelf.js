@@ -24,7 +24,7 @@ export default function Shelf({ shelf, updateBook, selectedBook, updateSelectedB
             updateSelectedBook={updateSelectedBook}
           />
         ))}
-        <AddBook />
+        {!shelf.title.includes("Search") && <AddBook />}
       </div>
     </ShelfStyled>
   )
