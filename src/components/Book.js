@@ -56,10 +56,9 @@ const BookStyled = styled.div`
   justify-self: center;
   padding: 20px 10px 10px;
   text-align: center;
-  transition: 0.1s;
+  transition: 0.3s;
 
   &:hover {
-    background-color: #eee;
     transform: scale(1.05);
   }
 

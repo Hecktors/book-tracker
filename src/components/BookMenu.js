@@ -9,14 +9,14 @@ BookMenu.propTypes = {
 export default function BookMenu({ shelf, update }) {
   return (
     <BookMenuStyled>
-      <p>Move to...</p>
+      <p className="border-bottom">Move to...</p>
       <button className="btnMenu" disabled={shelf === "currentlyReading"} onClick={() => update("currentlyReading")}>
         Currently reading
       </button>
       <button className="btnMenu" disabled={shelf === "wantToRead"} onClick={() => update("wantToRead")}>
         Want to read
       </button>
-      <button className="btnMenu border-bottom" disabled={shelf === "read"} onClick={() => update("read")}>
+      <button className="btnMenu" disabled={shelf === "read"} onClick={() => update("read")}>
         Read
       </button>
       {shelf && (
@@ -32,8 +32,8 @@ const BookMenuStyled = styled.div`
   position: absolute;
   width: calc(100% - 20px);
   top: 30px;
-  background-color: #eee;
-  border: 1px solid #ccc;
+  background-color: #e1ffb1;
+  border: 1px solid #68c893;
   text-align: left;
 
   button {
@@ -45,17 +45,16 @@ const BookMenuStyled = styled.div`
   }
 
   button:enabled:hover {
-    background-color: #ccc;
+    background-color: #bedd8e;
   }
 
   p,
   button {
     margin: 0;
     padding: 5px;
-    font-size: 1rem;
   }
 
   .border-bottom {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #c4d7cc;
   }
 `

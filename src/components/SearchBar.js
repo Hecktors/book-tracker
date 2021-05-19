@@ -47,7 +47,7 @@ const SearchBarStyled = styled.form`
   input {
     padding-left: 20px;
     flex-grow: 1;
-    font-size: 1.2rem;
+    font-size: 2rem;
   }
 
   input,
