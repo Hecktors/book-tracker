@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <HeaderStyled>
       <img src={BookIcon} alt="Open book" />
-      <h1>Book Tracking</h1>
+      <h1>Book Tracker</h1>
     </HeaderStyled>
   )
 }
